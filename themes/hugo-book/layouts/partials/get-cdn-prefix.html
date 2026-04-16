@@ -1,0 +1,3 @@
+{{- $region := (getenv "HUGO_REGION") | default "default" -}}
+{{- $prefix := index .Site.Params.cdnPrefixes $region | default (index .Site.Params.cdnPrefixes "default") -}}
+{{- return $prefix -}}

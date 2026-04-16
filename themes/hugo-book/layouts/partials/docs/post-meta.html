@@ -1,0 +1,43 @@
+{{ with .Date }}
+  <h5>{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}</h5>
+{{ end }}
+
+{{ range $taxonomy, $_ := .Site.Taxonomies }}
+  {{ with $terms := $.GetTerms $taxonomy }}
+  <div>
+    {{ range $n, $term := $terms }}{{ if $n }} <span style="color:#2A40FF">| </span> {{ end }}
+      <a href="{{ $term.RelPermalink }}">{{ $term.Title }}</a>
+    {{- end }}
+  </div>
+  {{ end }}
+{{ end }}
+
+
+{{ if .Params.image }}
+<p>
+  <!-- {{ with .Resources.GetMatch .Params.image }}
+    <img src={{ .RelPermalink }} />
+  {{ else }} -->
+    <!-- {{- $cdnPrefix := .Site.Params.cdnURL -}}
+    {{- if eq hugo.Environment "production-cn" -}}
+      {{- $cdnPrefix = .Site.Params.cdnURLCN -}}
+    {{- end -}} -->
+    {{- $cdnPrefix := partial "get-cdn-prefix.html" . -}}
+    <img src={{ $cdnPrefix }}{{ .Params.image | relURL }} />
+  <!-- {{ end }} -->
+</p>
+{{ end }}
+
+<!-- button style tag 
+style=
+  "
+  padding: 0px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-style: solid;
+  border-color: #2A40FF;
+  border-width: 0.5px;
+  border-radius: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;"  -->

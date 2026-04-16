@@ -1,0 +1,274 @@
+.markdown {
+  // {{< expand "Label" "icon" >}}
+  .book-expand {
+    margin-top: $padding-16;
+    margin-bottom: $padding-16;
+
+    border: $padding-1 solid var(--gray-200);
+    border-radius: $border-radius;
+
+    overflow: hidden;
+
+    .book-expand-head {
+      background: var(--gray-100);
+      padding: $padding-8 $padding-16;
+      cursor: pointer;
+    }
+
+    .book-expand-content {
+      display: none;
+      padding: $padding-16;
+    }
+
+    input[type="checkbox"]:checked + .book-expand-content {
+      display: block;
+    }
+  }
+
+  // {{< tabs >}}
+  .book-tabs {
+    margin-top: $padding-16;
+    margin-bottom: $padding-16;
+
+    border: $padding-1 solid var(--gray-200);
+    border-radius: $border-radius;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    label {
+      display: inline-block;
+      padding: $padding-8 $padding-16;
+      border-bottom: $padding-1 transparent;
+      cursor: pointer;
+    }
+
+    .book-tabs-content {
+      order: 999; //Move content blocks to the end
+      width: 100%;
+      border-top: $padding-1 solid var(--gray-100);
+      padding: $padding-16;
+      display: none;
+    }
+
+    input[type="radio"]:checked + label {
+      border-bottom: $padding-1 solid var(--color-link);
+    }
+    input[type="radio"]:checked + label + .book-tabs-content {
+      display: block;
+    }
+    input[type="radio"]:focus + label {
+      @include outline;
+    }
+  }
+
+  // {{< columns >}}
+  .book-columns {
+    margin-left: -$padding-4;
+    margin-right: -$padding-4;
+
+    > div {
+      margin: $padding-4 0;
+      min-width: $body-min-width / 1.5;
+      padding: 0 2px;
+    }
+  }
+
+  // {{< button >}}
+  a.book-btn {
+    display: inline-block;
+    font-size: $font-size-14;
+    color: var(--color-link);
+    line-height: $padding-16 * 2;
+    padding: 0 $padding-16;
+    margin-bottom: 2px;
+    border: $padding-1 solid var(--color-link);
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+      background-color: white;
+      box-shadow: 2px 2px 2px var(--color-link);
+      transform: scale(1.1, 1.1);
+      transform-origin: left;
+    }
+  }
+
+  // {{< hint >}}
+  .book-hint {
+    @each $name, $color in $hint-colors {
+      &.#{$name} {
+        border-color: $color;
+        background-color: rgba($color, 0.1);
+      }
+    }
+  }
+
+  red,r {
+    color: red;
+    font-weight: bold;
+  }
+  blue,bl {
+    color: blue;
+    font-weight: bold;
+  }
+  yellowb,y {
+    font-weight: bold;
+    background-color: yellow;
+  }
+  g {
+    color: green;
+    font-weight: bold;
+  }
+}
+// https://www.sleepymoon.cyou/2023/hugo-shortcodes/#%E5%BC%95%E7%94%A8neodb%E6%9D%A1%E7%9B%AE
+/* db-card -------- start*/
+.db-card {
+	margin: 2rem 2rem;
+	background: var(--card-background);
+	border-radius: 7px;
+	box-shadow: 0 3px 10px 0 #00000053;
+}
+
+.db-card-subject {
+	display: flex;
+	align-items: flex-start;
+	line-height: 1.6;
+	padding: 12px;
+	position: relative;
+}
+
+.dark .db-card {
+	background: var(--card-background);
+}
+
+.db-card-content {
+	flex: 1 1 auto;
+}
+
+.db-card-post {
+	width: 100px;
+	margin-right: 15px;
+	display: flex;
+	flex: 0 0 auto;
+}
+
+.db-card-title {
+	margin-bottom: 3px;
+	font-size: 16px;
+  font-weight: bold;
+	color: var(--card-text-color-main);
+  :hover {
+    transform: scale(1.1, 1.1);
+    transform-origin: left;
+    text-decoration: underline overline !important;
+  }
+}
+
+.db-card-title a {
+	text-decoration: none !important
+}
+
+.db-card-abstract,
+.db-card-comment {
+	font-size: 13px;
+	overflow: auto;
+	max-height: 6.5rem;
+	color: var(--card-text-color-main);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.db-card-abstract::-webkit-scrollbar {
+  display: none;
+}
+
+.db-card-cate {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: var(--color-link);
+	padding: 1px 8px;
+	font-size: small;
+	font-style: italic;
+	border-radius: 0 8px 0 8px;
+	text-transform: capitalize;
+}
+
+.db-card-post img {
+	width: 100px !important;
+	height: 150px !important;
+	border-radius: 4px;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.rating {
+	margin: 0 0 5px;
+	font-size: 13px;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+}
+
+.rating .allstardark {
+	position: relative;
+	color: var(--color-link);
+	height: 16px;
+	width: 80px;
+	background-size: auto 100%;
+	margin-right: 8px;
+	background-repeat: repeat;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgZmlsbD0iI2Y5OWIwMSIvPjwvc3ZnPg==);
+}
+
+.rating .allstarlight {
+	position: absolute;
+	left: 0;
+	color: var(--color-link);
+	height: 16px;
+	overflow: hidden;
+	background-size: auto 100%;
+	background-repeat: repeat;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiBmaWxsPSIjZjk5YjAxIi8+PC9zdmc+);
+}
+
+@media (max-width:550px) {
+	.db-card {
+		margin: 0.8rem 1rem;
+	}
+
+	.db-card-comment {
+		display: none;
+	}
+}
+/* db-card -------- end */
+
+.spoiler {
+  filter: blur(4px);
+  display: inline;
+  &:hover {
+    filter: blur(0);
+  }
+}
+
+.empty {
+  display: inline;
+}
+
+.wrap {
+  float: right;
+  max-width: calc(min(100%, 400px)) !important;
+  padding-left:  $padding-8;
+  padding-top: $padding-8;
+  text-align: center;
+}
+
+.wrap-left {
+  float: left;
+  padding-right:  $padding-16; 
+  padding-left: 0px;
+}

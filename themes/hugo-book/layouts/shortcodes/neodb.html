@@ -1,0 +1,42 @@
+<!-- https://www.summeringway.icu/2024/stack-%E6%99%B4%E7%A9%BA%E5%8F%B7%E7%BB%B4%E4%BF%AE%E6%97%A5%E5%BF%9701/ -->
+{{ $dbUrl := .Get 0 }}
+{{ $dbApiUrl := "https://neodb.social/api/" }}
+{{ $dbType := "" }}
+
+{{ if ( findRE `^.*neodb\.social\/.*` $dbUrl ) }}
+  {{ $dbType = replaceRE `.*neodb.social\/(.*\/.*)` "$1" $dbUrl }}
+{{ else }}
+  {{ $dbType = $dbUrl }}
+  {{ $dbApiUrl = "https://neodb.social/api/catalog/fetch?url=" }}
+{{ end }}
+
+{{ $response := resources.GetRemote (print $dbApiUrl $dbType) }}
+{{ if $response }}
+  {{ $dbFetch := $response.Content | transform.Unmarshal }}
+  
+  <div class="db-card">
+    <div class="db-card-subject">
+      <div class="db-card-post"><img loading="lazy" decoding="async" referrerpolicy="no-referrer" src="{{ $dbFetch.cover_image_url }}"></div>
+      <div class="db-card-content">
+        <div class="db-card-title">
+          <a href="{{ $dbUrl }}" class="cute" target="_blank" rel="noreferrer">「{{ $dbFetch.title }}」</a>  
+          {{ if and (.Get 2) (gt (len (.Get 2)) 0) }}| <a href="{{ .Get 2 }}" class="cute" target="_blank"> 点击购买 </a>{{ end }}
+        </div>
+        {{ if .Get 1}}
+          {{ $itemRating :=  .Get 1 }}
+          <div class="rating"> 个人评分：<span class="allstardark"><span class="allstarlight" style="width:{{mul 10 $itemRating }}%"></span></div>
+        {{ end }}
+        <div class="db-card-abstract">
+          {{ if .Get 3 }}
+            个人短评：{{ .Get 3 }}
+          {{ else }}
+            {{ $dbFetch.brief }}
+          {{ end }}
+        </div>
+      </div>
+      <div class="db-card-cate">{{ $dbFetch.category }}</div>
+    </div>
+  </div>
+{{else}}
+    <p style="text-align: center;"><small>远程获取内容失败，请检查 API 有效性。</small></p>
+{{end}}

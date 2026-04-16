@@ -1,0 +1,485 @@
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+}
+
+body {
+  min-width: $body-min-width;
+  color: var(--body-font-color);
+  background: var(--body-background);
+
+  letter-spacing: 0.33px;
+  font-weight: $body-font-weight;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+  * {
+    box-sizing: inherit;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+img {
+  vertical-align: text-bottom;
+}
+
+:focus {
+  @include outline;
+}
+
+li {
+  // list-style: square;
+  // list-style-type: '+';
+  // padding-inline-start: 1ch;
+}
+
+li::marker {
+  color: var(--color-link);
+}
+
+aside nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    margin: 1em 0;
+    position: relative;
+  }
+
+  a {
+    display: block;
+  }
+
+  a:hover {
+    color: var(--color-link);
+    transform: scale(1.4, 1.4);
+    transform-origin: left;
+  }
+
+  ul {
+    padding-inline-start: $padding-16;
+  }
+}
+
+ul.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding-inline-start: 0px;
+
+  .page-item a {
+    padding: $padding-16;
+  }
+}
+
+/* override selection color */
+::selection {
+  background: var(--color-link-light);
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+}
+
+.book-icon {
+  filter: var(--icon-filter);
+}
+
+.book-brand {
+  margin-top: 0;
+  margin-bottom: $padding-16;
+
+  img {
+    height: 1.5em;
+    // width: 1.5em;
+    margin-inline-end: $padding-8;
+  }
+}
+
+.book-menu {
+  flex: 0 0 $menu-width;
+  font-size: $font-size-14;
+
+  .book-menu-content {
+    width: $menu-width;
+    padding: $padding-16;
+    background: var(--body-background);
+
+    @include fixed;
+  }
+
+  a,
+  label {
+    color: inherit;
+    cursor: pointer;
+    word-wrap: break-word;
+  }
+
+  a.active {
+    color: var(--color-link);
+  }
+
+  input.toggle + label + ul {
+    display: none;
+  }
+
+  input.toggle:checked + label + ul {
+    display: block;
+  }
+
+  input.toggle + label::after {
+    content: "▸";
+  }
+
+  input.toggle:checked + label::after {
+    content: "▾";
+  }
+}
+
+// for RTL support
+body[dir="rtl"] .book-menu {
+  input.toggle + label::after {
+    content: "◂";
+  }
+
+  input.toggle:checked + label::after {
+    content: "▾";
+  }
+}
+
+.book-section-flat {
+  margin: $padding-16 * 2 0;
+
+  > a,
+  > span,
+  > label {
+    font-weight: bolder;
+  }
+
+  > ul {
+    display: inline;
+    padding-inline-start: 0;
+  }
+}
+
+.book-page {
+  min-width: $body-min-width;
+  flex-grow: 1;
+  padding: $padding-16;
+}
+
+.book-post {
+  margin-bottom: $padding-16 * 2;
+  &:hover {
+    box-shadow: 3px 3px 3px 0px var(--color-link-light);
+    transform: scale(1.01);
+  }
+}
+
+.post-divider {
+  border: 1px solid var(--color-link);
+  margin-bottom: $padding-16 * 2;
+}
+
+.book-header {
+  display: none;
+  margin-bottom: $padding-16;
+
+  label {
+    line-height: 0;
+  }
+
+  img.book-icon {
+    height: 1.5em;
+    width: 1.5em;
+  }
+}
+
+.book-search {
+  position: relative;
+  margin: $padding-16 0;
+  border-bottom: 1px solid transparent;
+
+  input {
+    width: 100%;
+    padding: $padding-8;
+
+    border: 0;
+    border-radius: $border-radius;
+
+    background: var(--gray-100);
+    color: var(--body-font-color);
+
+    &:required + .book-search-spinner {
+      display: block;
+    }
+  }
+
+  .book-search-spinner {
+    position: absolute;
+    top: 0;
+    margin: $padding-8;
+    margin-inline-start: calc(100% - #{$padding-16 + $padding-8});
+
+    width: $padding-16;
+    height: $padding-16;
+
+    border: $padding-1 solid transparent;
+    border-top-color: var(--body-font-color);
+    border-radius: 50%;
+
+    @include spin(1s);
+  }
+
+  small {
+    opacity: 0.5;
+  }
+}
+
+.book-toc {
+  flex: 0 0 $toc-width;
+  font-size: $font-size-12;
+
+  .book-toc-content {
+    width: $toc-width;
+    padding: $padding-16;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    @include fixed;
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .book-toc-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  img {
+    height: 1em;
+    width: 1em;
+  }
+
+  nav > ul > li:first-child {
+    margin-top: 0;
+  }
+}
+
+.compact-toc {
+  // override [markup.tableOfContents] endLevel in page is not supported, do hacky support
+  // https://discourse.gohugo.io/t/can-i-override-toc-setting-for-only-one-file-in-front-matter/36085
+  nav > ul > li > ul {
+    display: None;
+  }
+}
+
+.book-footer {
+  padding-top: $padding-16;
+  font-size: $font-size-14;
+
+  img {
+    height: 1em;
+    width: 1em;
+    margin-inline-end: $padding-8;
+  }
+}
+
+.book-comments {
+  margin-top: $padding-16;
+}
+
+.book-languages {
+  margin-block-end: $padding-16 * 2;
+
+  .book-icon {
+    height: 1em;
+    width: 1em;
+    margin-inline-end: .5em;
+  }
+
+  ul {
+    padding-inline-start: 1.5em;
+  }
+}
+
+.tag-cloud {
+  display: inline-block;
+  font-size: $font-size-12;
+  color: var(--color-link);
+  line-height: 20px;
+  border: 0;
+  // border: $padding-1 solid var(--color-link);
+  border-radius: 2px;
+  padding: 0 1px;
+  margin: 2px;
+  cursor: pointer;
+  background-color: white;
+
+  &:hover {
+    text-decoration: none;
+    // background-color: #E8F6EF;
+    filter: drop-shadow(1px 1px 1px var(--color-link));
+    transform: scale(1.5, 1.5);
+    transform-origin: left;
+  }
+}
+
+.random {
+  display: inline-block;
+  font-size: $font-size-14;
+  border: 0;
+  background-color: transparent;
+  margin: 0;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    transform: scale(1.5, 1.5);
+    transform-origin: left;
+    color: var(--color-link);
+  }
+}
+
+.support {
+  gap: 8px;
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.image-desc {
+  font-size:small;
+  margin-top: 2px; 
+  color: gray; 
+  text-align: center;
+}
+
+.title-image {
+  font-size:small;
+  margin-top: -14px; 
+  color: gray;
+}
+
+.archive {
+  display: inline;
+  color: var(--gray-500);
+  font-size: 0.75em;
+}
+
+.tag {
+  display: inline;
+  padding: 0 $padding-4;
+  border-radius: 2px;
+  background:var(--tag-color);
+  font-size: 0.875em;
+}
+
+.tag-small {
+  font-size: 0.75em;
+  color: var(--gray-500);
+}
+
+// Responsive styles
+.book-menu-content,
+.book-toc-content,
+.book-page,
+.book-header aside,
+.markdown {
+  transition: 0.2s ease-in-out;
+  transition-property: transform, margin, opacity, visibility;
+  will-change: transform, margin, opacity;
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  #menu-control,
+  #toc-control {
+    display: inline;
+  }
+
+  .book-menu {
+    visibility: hidden;
+    margin-inline-start: -$menu-width;
+    font-size: $font-size-base;
+    z-index: 1;
+  }
+
+  .book-toc {
+    display: none;
+  }
+
+  .book-header {
+    display: block;
+  }
+
+  #menu-control:focus ~ main label[for="menu-control"] {
+    @include outline;
+  }
+
+  #menu-control:checked ~ main {
+    .book-menu {
+      visibility: initial;
+    }
+
+    .book-menu .book-menu-content {
+      transform: translateX($menu-width);
+      box-shadow: 0 0 $padding-8 rgba(0, 0, 0, 0.1);
+    }
+
+    .book-page {
+      opacity: 0.25;
+    }
+
+    .book-menu-overlay {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  #toc-control:focus ~ main label[for="toc-control"] {
+    @include outline;
+  }
+
+  #toc-control:checked ~ main {
+    .book-header aside {
+      display: block;
+    }
+  }
+
+  // for RTL support
+  body[dir="rtl"] #menu-control:checked ~ main {
+    .book-menu .book-menu-content {
+      transform: translateX(-$menu-width);
+    }
+  }
+}
+
+// Extra space for big screens
+@media screen and (min-width: $container-max-width) {
+  .book-page,
+  .book-menu .book-menu-content,
+  .book-toc .book-toc-content {
+    padding: $padding-16 * 2 $padding-16;
+  }
+}

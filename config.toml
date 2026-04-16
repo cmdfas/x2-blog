@@ -1,0 +1,24 @@
+baseURL = 'https://blog.3css.com/'
+languageCode = 'zh-CN'
+title = 'ab2seki'
+theme = 'hugo-book'
+hasCJKLanguage = true
+
+[markup]
+    [markup.highlight]
+        style = 'paraiso-light'     # style demos https://pygments.org/demo/
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true    # 允许渲染原始 HTML
+
+[params]
+    BookRepo = 'https://github.com/cmdfas/test-gh-actions'
+    BookLogo = 'x2-logo.png'
+    BookMenuBundle = '/menu'
+    
+    [params.cdnPrefixes]
+        default = "https://static.cmdfas.top"
+        cn = "https://static.3css.com"
+        en = "https://static.cmdfas.top"
+
+
