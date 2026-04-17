@@ -1,6 +1,6 @@
 baseURL = 'https://blog.3css.com/'
 languageCode = 'zh-CN'
-title = 'ab2seki'
+title = 'X2的主页'
 theme = 'hugo-book'
 hasCJKLanguage = true
 
@@ -12,7 +12,7 @@ hasCJKLanguage = true
             unsafe = true    # 允许渲染原始 HTML
 
 [params]
-    BookRepo = 'https://github.com/cmdfas/test-gh-actions'
+    BookRepo = 'https://github.com/cmdfas/x2-blog'
     BookLogo = 'x2-logo.png'
     BookMenuBundle = '/menu'
     
