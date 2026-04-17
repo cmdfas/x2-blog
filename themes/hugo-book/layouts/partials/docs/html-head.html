@@ -14,7 +14,11 @@
 
 {{- $manifest := resources.Get "manifest.json" | resources.ExecuteAsTemplate "manifest.json" . }}
 <link rel="manifest" href="{{ $manifest.RelPermalink }}">
-<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png" sizes="any">
+<!-- Preload web fonts to avoid FOUT -->
+<link rel="preload" href="{{ "fonts/roboto-v27-latin-regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/roboto-v27-latin-700.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
 {{- range .Translations }}
   <link rel="alternate" hreflang="{{ default .Language.Lang .Site.LanguageCode }}" href="{{ .Permalink }}" title="{{ partial "docs/title" . }}">
@@ -27,8 +31,30 @@
 {{- if default true .Site.Params.BookSearch -}}
   {{- $searchJSFile := printf "%s.search.js" .Language.Lang }}
   {{- $searchJS := resources.Get "search.js" | resources.ExecuteAsTemplate $searchJSFile . | resources.Minify | resources.Fingerprint }}
-  <script defer src="{{ "fuse.min.js" | relURL }}"></script>
-  <script defer src="{{ $searchJS.RelPermalink }}" {{ template "integrity" $searchJS }}></script>
+  <script>
+  (function(){
+    var loaded = false;
+    function loadSearch() {
+      if (loaded) return;
+      loaded = true;
+      var s1 = document.createElement('script');
+      s1.src = '{{ "fuse.min.js" | relURL }}';
+      s1.onload = function() {
+        var s2 = document.createElement('script');
+        s2.src = '{{ $searchJS.RelPermalink }}';
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s1);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var input = document.getElementById('book-search-input');
+      if (input) {
+        input.addEventListener('focus', loadSearch, {once: true});
+        input.addEventListener('keydown', loadSearch, {once: true});
+      }
+    });
+  })();
+  </script>
 {{ end -}}
 
 {{- if .Site.Params.BookServiceWorker -}}
