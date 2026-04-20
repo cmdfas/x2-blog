@@ -12,10 +12,9 @@
 
 <title>{{ partial "docs/html-head-title" . }}</title>
 
-{{- $manifest := resources.Get "manifest.json" | resources.ExecuteAsTemplate "manifest.json" . }}
-<link rel="manifest" href="{{ $manifest.RelPermalink }}">
+{{- /* $manifest := resources.Get "manifest.json" | resources.ExecuteAsTemplate "manifest.json" . */}}
+{{- /* <link rel="manifest" href="{{ $manifest.RelPermalink }}"> */}}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
-<link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png" sizes="any">
 <!-- Preload web fonts to avoid FOUT -->
 <link rel="preload" href="{{ "fonts/roboto-v27-latin-regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ "fonts/roboto-v27-latin-700.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
