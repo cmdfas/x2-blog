@@ -15,7 +15,6 @@ hasCJKLanguage = true
     BookRepo = 'https://github.com/cmdfas/x2-blog'
     BookLogo = 'x2-logo.png'
     BookMenuBundle = '/menu'
-    BookServiceWorker = true  # 启用 SW，重复访问直接走缓存
     
     [params.cdnPrefixes]
         default = "https://static.cmdfas.top"
