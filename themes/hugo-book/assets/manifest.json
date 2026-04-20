@@ -9,7 +9,13 @@
   "icons": [
     {
       "src": "{{ "/favicon.svg" | relURL }}",
-      "sizes": "512x512"
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "{{ "/favicon.png" | relURL }}",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
