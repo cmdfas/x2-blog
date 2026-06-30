@@ -39,3 +39,13 @@
   {{ partial "docs/inject/body" . }}
 </body>
 </html>
+
+{{ define "main" }}
+  <article class="markdown note-article">
+    <div class="note-content">
+      {{- .Content -}}
+    </div>
+  </article>
+{{ end }}
+
+{{ define "toc" }}{{ end }}
