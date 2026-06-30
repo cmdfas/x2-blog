@@ -20,7 +20,7 @@
 
     {{ partial "docs/inject/content-before" . }}
     <main class="note-main">
-      {{ template "main" . }}
+      {{ block "main" . }}{{ end }}
     </main>
     {{ partial "docs/inject/content-after" . }}
 
