@@ -7,7 +7,9 @@
   --note-border: rgba(20, 24, 32, 0.08);
   --note-muted: #6b7280;
   --note-shadow: 0 24px 70px rgba(42, 64, 255, 0.09);
+  --note-ink: #24262b;
 }
+
 
 body {
   background:
@@ -27,7 +29,7 @@ body {
 }
 
 .note-index {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -285,6 +287,7 @@ body {
     --note-border: rgba(255, 255, 255, 0.12);
     --note-muted: rgba(233, 236, 239, 0.72);
     --note-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    --note-ink: rgba(233, 236, 239, 0.9);
   }
 }
 
@@ -371,6 +374,7 @@ body {
 
   img {
     width: auto;
+    width: auto;
     height: 2rem;
     object-fit: contain;
   }
@@ -443,11 +447,11 @@ body {
     content: "";
     position: absolute;
     right: 0;
-    top: 18%;
-    width: 38vw;
-    max-width: 22rem;
-    height: 38vw;
-    max-height: 22rem;
+    top: 14%;
+    width: 32vw;
+    max-width: 18rem;
+    height: 32vw;
+    max-height: 18rem;
     border-radius: 42% 58% 63% 37%;
     background: linear-gradient(135deg, rgba(42, 64, 255, 0.16), rgba(124, 156, 255, 0.05));
     filter: blur(1px);
@@ -457,7 +461,7 @@ body {
   h1 {
     max-width: 780px;
     margin: 0;
-    font-size: clamp(3rem, 12vw, 7.5rem);
+    font-size: clamp(2.8rem, 10vw, 6.6rem);
     line-height: 0.96;
     letter-spacing: -0.075em;
   }
@@ -565,7 +569,7 @@ body {
 
 .home-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 
   a {
