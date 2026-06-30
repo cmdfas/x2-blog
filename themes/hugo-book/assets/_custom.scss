@@ -280,8 +280,10 @@ body {
   font-weight: 800;
 
   img {
-    width: 2rem;
+    width: auto;
     height: 2rem;
+    max-width: 5.5rem;
+    object-fit: contain;
     border-radius: 0.7rem;
   }
 }
