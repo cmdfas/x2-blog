@@ -232,7 +232,8 @@ body {
 }
 
 .note-site-shell {
-  width: min(100% - 2rem, 1120px);
+  width: calc(100% - 2rem);
+  max-width: 1120px;
   margin: 0 auto;
 }
 
@@ -306,7 +307,7 @@ body {
 
 @media screen and (max-width: 640px) {
   .note-site-shell {
-    width: min(100% - 1rem, 1120px);
+    width: calc(100% - 1rem);
   }
 
   .note-site-header {
@@ -334,8 +335,10 @@ body {
     position: absolute;
     right: 0;
     top: 18%;
-    width: min(38vw, 22rem);
-    height: min(38vw, 22rem);
+    width: 38vw;
+    max-width: 22rem;
+    height: 38vw;
+    max-height: 22rem;
     border-radius: 42% 58% 63% 37%;
     background: linear-gradient(135deg, rgba(42, 64, 255, 0.16), rgba(124, 156, 255, 0.05));
     filter: blur(1px);
