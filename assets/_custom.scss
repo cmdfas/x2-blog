@@ -1,0 +1,225 @@
+:root {
+  --note-surface: #ffffff;
+  --note-soft: #f7f8fb;
+  --note-border: rgba(20, 24, 32, 0.08);
+  --note-muted: #6b7280;
+  --note-shadow: 0 24px 70px rgba(42, 64, 255, 0.09);
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(42, 64, 255, 0.08), transparent 30rem),
+    var(--body-background);
+}
+
+.book-page {
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+.note-article,
+.note-index {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.note-hero,
+.note-index-header {
+  padding: clamp(1.5rem, 4vw, 3rem) 0 2rem;
+}
+
+.note-cover {
+  margin: 0 0 2rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--gray-100);
+  box-shadow: var(--note-shadow);
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  figcaption {
+    padding: 0.75rem 1rem;
+    color: var(--note-muted);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+}
+
+.note-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--color-link);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.note-title,
+.note-index-header h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 7vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+
+  a {
+    color: inherit;
+  }
+}
+
+.note-meta-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--note-border);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--note-surface) 86%, transparent);
+  box-shadow: 0 10px 35px rgba(20, 24, 32, 0.05);
+}
+
+.note-avatar {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: white;
+  background: linear-gradient(135deg, var(--color-link), #7c9cff);
+  font-weight: 800;
+}
+
+.note-author {
+  font-weight: 700;
+}
+
+.note-date,
+.note-post-meta {
+  color: var(--note-muted);
+  font-size: 0.9rem;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  a {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--note-border);
+    border-radius: 999px;
+    background: var(--note-soft);
+    color: var(--body-font-color);
+    font-size: 0.85rem;
+  }
+
+  a:hover {
+    color: var(--color-link);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+}
+
+.note-content {
+  font-size: 1.04rem;
+  line-height: 1.82;
+
+  h2 {
+    margin-top: 2.4em;
+    padding-top: 0.35em;
+    border-top: 1px solid var(--note-border);
+    font-size: 1.7em;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    margin-top: 1.9em;
+    font-size: 1.3em;
+  }
+
+  p {
+    margin: 1.05em 0;
+  }
+
+  blockquote,
+  pre,
+  details {
+    border-radius: 1rem;
+  }
+
+  blockquote {
+    background: var(--note-soft);
+    border-inline-start-color: var(--color-link-light);
+  }
+}
+
+.note-afterword {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--note-border);
+}
+
+.note-index-header p:not(.note-kicker) {
+  color: var(--note-muted);
+  font-size: 1.05rem;
+}
+
+.note-post-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.note-post-card {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--note-border);
+  border-radius: 1.25rem;
+  background: var(--note-surface);
+  box-shadow: 0 12px 40px rgba(20, 24, 32, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-link-light);
+    box-shadow: var(--note-shadow);
+    transform: translateY(-3px);
+  }
+
+  h2 {
+    margin: 0.4rem 0 0.65rem;
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  p {
+    color: var(--note-muted);
+  }
+}
+
+.note-readmore {
+  font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --note-surface: rgba(255, 255, 255, 0.06);
+    --note-soft: rgba(255, 255, 255, 0.08);
+    --note-border: rgba(255, 255, 255, 0.12);
+    --note-muted: rgba(233, 236, 239, 0.72);
+    --note-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .note-title,
+  .note-index-header h1 {
+    letter-spacing: -0.035em;
+  }
+
+  .note-meta-card {
+    align-items: flex-start;
+  }
+}
