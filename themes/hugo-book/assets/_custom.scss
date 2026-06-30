@@ -7,7 +7,9 @@
   --note-border: rgba(20, 24, 32, 0.08);
   --note-muted: #6b7280;
   --note-shadow: 0 24px 70px rgba(42, 64, 255, 0.09);
+  --note-ink: #24262b;
 }
+
 
 body {
   background:
@@ -21,7 +23,7 @@ body {
 
 .note-article,
 .note-index {
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -129,24 +131,40 @@ body {
 }
 
 .note-content {
-  font-size: 1.04rem;
-  line-height: 1.82;
+  color: var(--note-ink);
+  font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+  line-height: 2;
+  letter-spacing: 0.02em;
 
   h2 {
-    margin-top: 2.4em;
-    padding-top: 0.35em;
-    border-top: 1px solid var(--note-border);
-    font-size: 1.7em;
-    letter-spacing: -0.02em;
+    margin-top: 2.6em;
+    padding-top: 0.2em;
+    border-top: 0;
+    color: var(--body-font-color);
+    font-size: 1.55em;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    margin-top: 1.9em;
-    font-size: 1.3em;
+    margin-top: 2.1em;
+    color: var(--body-font-color);
+    font-size: 1.22em;
+    line-height: 1.55;
   }
 
   p {
-    margin: 1.05em 0;
+    margin: 1.25em 0;
+  }
+
+  ul,
+  ol {
+    margin: 1.25em 0;
+    padding-inline-start: 1.55em;
+  }
+
+  li + li {
+    margin-top: 0.45em;
   }
 
   blockquote,
@@ -213,6 +231,7 @@ body {
     --note-border: rgba(255, 255, 255, 0.12);
     --note-muted: rgba(233, 236, 239, 0.72);
     --note-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    --note-ink: rgba(233, 236, 239, 0.9);
   }
 }
 
@@ -328,17 +347,17 @@ body {
 
 .home-hero {
   position: relative;
-  padding: clamp(2.5rem, 8vw, 6.5rem) 0 clamp(2rem, 6vw, 4rem);
+  padding: clamp(1.75rem, 5vw, 4rem) 0 clamp(1.5rem, 4vw, 2.75rem);
 
   &::after {
     content: "";
     position: absolute;
     right: 0;
-    top: 18%;
-    width: 38vw;
-    max-width: 22rem;
-    height: 38vw;
-    max-height: 22rem;
+    top: 14%;
+    width: 32vw;
+    max-width: 18rem;
+    height: 32vw;
+    max-height: 18rem;
     border-radius: 42% 58% 63% 37%;
     background: linear-gradient(135deg, rgba(42, 64, 255, 0.16), rgba(124, 156, 255, 0.05));
     filter: blur(1px);
@@ -348,7 +367,7 @@ body {
   h1 {
     max-width: 780px;
     margin: 0;
-    font-size: clamp(3rem, 12vw, 7.5rem);
+    font-size: clamp(2.8rem, 10vw, 6.6rem);
     line-height: 0.96;
     letter-spacing: -0.075em;
   }
@@ -366,7 +385,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 
   a {
     display: inline-flex;
@@ -451,7 +470,7 @@ body {
 
 .home-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 
   a {
