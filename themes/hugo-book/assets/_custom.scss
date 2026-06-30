@@ -19,7 +19,13 @@ body {
   padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
-.note-article,
+.note-article {
+  max-width: 620px;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans SC", "Noto Sans CJK SC", Arial, sans-serif;
+  letter-spacing: normal;
+}
+
 .note-index {
   max-width: 760px;
   margin: 0 auto;
@@ -61,16 +67,22 @@ body {
   text-transform: uppercase;
 }
 
-.note-title,
+.note-article .note-title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+
+  a {
+    color: inherit;
+  }
+}
+
 .note-index-header h1 {
   margin: 0;
   font-size: clamp(2.1rem, 7vw, 4.2rem);
   line-height: 1.08;
   letter-spacing: -0.055em;
-
-  a {
-    color: inherit;
-  }
 }
 
 .note-meta-card {
@@ -129,24 +141,63 @@ body {
 }
 
 .note-content {
-  font-size: 1.04rem;
-  line-height: 1.82;
+  font-size: 1.125rem;
+  line-height: 2;
+  letter-spacing: normal;
 
   h2 {
-    margin-top: 2.4em;
-    padding-top: 0.35em;
-    border-top: 1px solid var(--note-border);
-    font-size: 1.7em;
-    letter-spacing: -0.02em;
+    margin: 3.375rem 0 1.125rem;
+    padding: 0;
+    border: 0;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.04em;
   }
 
   h3 {
-    margin-top: 1.9em;
-    font-size: 1.3em;
+    margin: 2.25rem 0 1.125rem;
+    font-size: 1.375rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  > h2:first-child,
+  > h3:first-child {
+    margin-top: 0;
   }
 
   p {
-    margin: 1.05em 0;
+    margin: 2rem 0;
+  }
+
+  ul,
+  ol {
+    margin: 2rem 0;
+    padding-inline-start: 1.75rem;
+  }
+
+  li {
+    padding-inline-start: 0.25rem;
+  }
+
+  strong {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    background-image: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--gray-500);
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-link);
+    text-decoration-color: currentColor;
   }
 
   blockquote,
@@ -156,8 +207,29 @@ body {
   }
 
   blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.25rem;
     background: var(--note-soft);
     border-inline-start-color: var(--color-link-light);
+  }
+
+  pre {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #202124;
+
+    code {
+      color: #fff;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      letter-spacing: normal;
+    }
+  }
+
+  table,
+  details,
+  figure {
+    margin-block: 2rem;
   }
 }
 
@@ -217,13 +289,50 @@ body {
 }
 
 @media screen and (max-width: $mobile-breakpoint) {
-  .note-title,
   .note-index-header h1 {
     letter-spacing: -0.035em;
   }
 
   .note-meta-card {
     align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .note-article .note-title {
+    font-size: 1.75rem;
+    line-height: 1.45;
+    letter-spacing: 0.025em;
+  }
+
+  .note-content {
+    font-size: 1.0625rem;
+    line-height: 1.9;
+
+    h2 {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.6;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote,
+    pre,
+    table,
+    details,
+    figure {
+      margin-block: 1.75rem;
+    }
+
+    pre {
+      padding: 1.25rem;
+    }
   }
 }
 
@@ -261,9 +370,9 @@ body {
   font-weight: 800;
 
   img {
-    width: 2rem;
+    width: auto;
     height: 2rem;
-    border-radius: 0.7rem;
+    object-fit: contain;
   }
 }
 
@@ -295,7 +404,7 @@ body {
 
 .note-site-footer,
 .note-comments {
-  max-width: 760px;
+  max-width: 620px;
   margin: 3rem auto 0;
   color: var(--note-muted);
 }
@@ -328,7 +437,7 @@ body {
 
 .home-hero {
   position: relative;
-  padding: clamp(2.5rem, 8vw, 6.5rem) 0 clamp(2rem, 6vw, 4rem);
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(1.25rem, 3vw, 2rem);
 
   &::after {
     content: "";
@@ -366,7 +475,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 
   a {
     display: inline-flex;
@@ -380,9 +489,14 @@ body {
 }
 
 .home-primary-action {
-  color: white;
   background: var(--color-link);
   box-shadow: 0 14px 36px rgba(42, 64, 255, 0.22);
+}
+
+.home-hero-actions a.home-primary-action,
+.home-hero-actions a.home-primary-action:visited {
+  color: #fff;
+  text-decoration: none;
 }
 
 .home-secondary-action {
