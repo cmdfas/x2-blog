@@ -13,14 +13,22 @@
       </a>
       <nav class="note-site-nav" aria-label="Primary">
         <a href="{{ "posts/" | relURL }}">文章</a>
-        <a href="{{ "about/" | relURL }}">关于</a>
-        <a href="{{ "now/" | relURL }}">Now</a>
+        {{ $aboutPage := .Site.GetPage "docs/about" }}
+        <a href="{{ with $aboutPage }}{{ .RelPermalink }}{{ else }}{{ "docs/about/" | relURL }}{{ end }}">关于</a>
+        {{ $nowPage := .Site.GetPage "docs/now" }}
+        <a href="{{ with $nowPage }}{{ .RelPermalink }}{{ else }}{{ "docs/now/" | relURL }}{{ end }}">Now</a>
       </nav>
     </header>
 
     {{ partial "docs/inject/content-before" . }}
     <main class="note-main">
-      {{ template "main" . }}
+      {{ block "main" . }}
+        <article class="markdown note-article">
+          <div class="note-content">
+            {{- .Content -}}
+          </div>
+        </article>
+      {{ end }}
     </main>
     {{ partial "docs/inject/content-after" . }}
 
@@ -39,13 +47,3 @@
   {{ partial "docs/inject/body" . }}
 </body>
 </html>
-
-{{ define "main" }}
-  <article class="markdown note-article">
-    <div class="note-content">
-      {{- .Content -}}
-    </div>
-  </article>
-{{ end }}
-
-{{ define "toc" }}{{ end }}
