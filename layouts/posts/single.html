@@ -1,0 +1,49 @@
+{{ define "main" }}
+<article class="markdown note-article">
+  <header class="note-hero">
+    {{ if .Params.image }}
+      {{- $cdnPrefix := partial "get-cdn-prefix.html" . -}}
+      <figure class="note-cover">
+        <img src="{{ $cdnPrefix }}{{ .Params.image | relURL }}" alt="{{ .Title }}" />
+        {{ with .Params.imageDes }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+    {{ end }}
+
+    <div class="note-kicker">{{ with .Section }}{{ . | title }}{{ else }}Blog{{ end }}</div>
+    <h1 class="note-title"><a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a></h1>
+
+    <div class="note-meta-card">
+      <div class="note-avatar" aria-hidden="true">{{ substr (default .Site.Title .Params.author) 0 1 }}</div>
+      <div>
+        <div class="note-author">{{ default .Site.Title .Params.author }}</div>
+        <div class="note-date">
+          {{ with .Date }}{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}{{ end }}
+          <span aria-hidden="true"> · </span>{{ div .WordCount 1000.0 | lang.FormatNumber 2 }}k 字
+          <span aria-hidden="true"> · </span>约 {{ div .WordCount 400 }} 分钟
+        </div>
+      </div>
+    </div>
+
+    {{ range $taxonomy, $_ := .Site.Taxonomies }}
+      {{ with $terms := $.GetTerms $taxonomy }}
+        <div class="note-tags" aria-label="{{ $taxonomy }}">
+          {{ range $terms }}<a href="{{ .RelPermalink }}">#{{ .Title }}</a>{{ end }}
+        </div>
+      {{ end }}
+    {{ end }}
+  </header>
+
+  <div class="note-content">
+    {{- .Content -}}
+  </div>
+
+  <footer class="note-afterword">
+    {{ partial "docs/related" .}}
+    {{ partial "docs/support" .}}
+  </footer>
+</article>
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "docs/toc" . }}
+{{ end }}
