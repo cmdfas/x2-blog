@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="note-index markdown">
+  <header class="note-index-header">
+    <p class="note-kicker">{{ .Data.Singular }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>共 {{ len .Pages }} 篇文章。</p>
+  </header>
+
+  <div class="note-post-grid">
+    {{ range .Paginator.Pages }}
+    <article class="note-post-card">
+      <div class="note-post-meta">
+        {{ with .Date }}{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}{{ end }}
+        <span aria-hidden="true"> · </span>{{ div .WordCount 1000.0 | lang.FormatNumber 2 }}k 字
+      </div>
+      <h2><a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a></h2>
+      <p>{{ .Summary | plainify | truncate 140 }}</p>
+      <a class="note-readmore" href="{{ .RelPermalink }}">阅读全文</a>
+    </article>
+    {{ end }}
+  </div>
+
+  {{ template "_internal/pagination.html" . }}
+</section>
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "docs/taxonomy" . }}
+{{ end }}
